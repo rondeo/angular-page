@@ -1,0 +1,70 @@
+<mat-toolbar color="primary">
+  <span>Treserva Team</span>
+  <span class="spacer"></span>
+  Reload data:
+  <button mat-icon-button (click)="refreshTable()">
+    <mat-icon>refresh</mat-icon>
+  </button>
+</mat-toolbar>
+
+
+<div class="container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+    <!--  Team Name Column -->
+    <ng-container matColumnDef="team_name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Team Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.team_name}} </mat-cell>
+    </ng-container>
+
+    <!-- Feature Point Column -->
+    <ng-container matColumnDef="feature_point">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Feature Point </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.feature_point}} </mat-cell>
+    </ng-container>
+
+    <!-- Story Point Column -->
+    <ng-container matColumnDef="story_point">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Story Point </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.story_point}} </mat-cell>
+    </ng-container>
+
+    <!-- Velocity Column -->
+    <ng-container matColumnDef="velocity">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Velocity </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.velocity}} </mat-cell>
+    </ng-container>
+
+    <!-- actions -->
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef> 
+        <button mat-icon-button color="primary" matTooltip="Add New Team" (click)="addNewData()">
+          <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+        </button>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element; let i=index;">
+        <button mat-icon-button color="accent" (click)="editData(i,element.team_name,element.feature_point,element.story_point,element.velocity)">
+          <mat-icon aria-label="Edit Button">edit</mat-icon>
+        </button>
+        <button mat-icon-button color="accent" (click)="deleteData(i,element.team_name,element.feature_point)">
+          <mat-icon aria-label="Example icon-button with a heart icon">delete_outline</mat-icon>
+        </button>    
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+<!-- paginator -->
+<mat-paginator #paginator
+              [pageIndex]="0"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              showFirstLastButtons>
+</mat-paginator>
+
+</div>
