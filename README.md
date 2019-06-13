@@ -1,2 +1,2 @@
-# proj
-cfgdysuhc
+# sprint calculator
+new release
