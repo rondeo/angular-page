@@ -17,8 +17,7 @@
           <mat-form-field>
             <mat-label>Select an option</mat-label>
             <mat-select  [(value)]="selected">
-                <mat-option style="color: #000080;">None</mat-option>
-               <mat-option *ngFor="let teamname of team_names" [value]="teamname.name"  (click)='gettingTeamUrl()'>{{teamname.name}}</mat-option>
+               <mat-option *ngFor="let teamname of team_names" [value]="teamname.name"  (click)='gettingTeamUrl()'>{{teamname.name | uppercase}}</mat-option>
               </mat-select>
           </mat-form-field>
         </div>
@@ -33,8 +32,7 @@
                 <mat-form-field>
                  <mat-label>Select an option</mat-label>
                  <mat-select  [(value)]="selected1">
-                    <mat-option style="color: #000080;">None</mat-option>
-                    <mat-option *ngFor="let projectname of project_names" [value]="projectname.name">{{projectname.name}}</mat-option>
+                    <mat-option *ngFor="let projectname of project_names" [value]="projectname.name">{{projectname.name | uppercase}}</mat-option>
                   </mat-select>
                 </mat-form-field>
             </div>
@@ -58,43 +56,8 @@
       <br><br><br>
 
         <div class="lower" align="center">
-            <button class="button" [mat-dialog-close]="1" (click)="save()">Import</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="button" [mat-dialog-close]="1" (click)="importNewTeam()">Import</button>&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="button" color="primary" tabindex="-1" (click)="cancel()">Cancel</button>
         </div>
       </form>
 </div> 
-          
-
-
-
-
-<!-- 
-
-<div>
-  <mat-toolbar color="#e6e6ff">
-      <mat-toolbar-row>
-      <span style=color:#000080><b>Import Data From TFS</b></span>
-      </mat-toolbar-row>
-      </mat-toolbar>
-  <mat-form-field>
-      <mat-label>Team Name</mat-label>
-      <mat-select  [(value)]="selected">
-        <mat-option>None</mat-option>
-          <mat-option *ngFor="let teamname of team_names" [value]="teamname.name"  (click)='gettingTeamUrl()'>{{teamname.name}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <br>
-    <mat-form-field>
-      <mat-select  [(value)]="selected1">
-        <mat-option>None</mat-option>
-          <mat-option *ngFor="let projectname of project_names" [value]="projectname.name">{{projectname.projectname}}</mat-option>
-        </mat-select>
-      <p>You selected: {{selected1}}</p>
-    </mat-form-field>
- 
-    <div class="lower">
-        <button class="button" [mat-dialog-close]="1" (click)="importNewTeam()">Import</button>
-        <button class="button" color="primary" tabindex="-1" (click)="cancel()">Cancel</button>
-    </div>
-</div> -->

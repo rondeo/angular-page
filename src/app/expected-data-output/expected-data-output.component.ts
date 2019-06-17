@@ -3,8 +3,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { MatSort, MatTableDataSource,MatPaginator} from '@angular/material';
 import {IProduct,TeamDetails} from '../modals/productData'
 import { ServiceService } from '../user/service.service';
-import { ImportedDataComponent } from '../dialogs/imported-data/imported-data.component';
-
+// import { ImportedDataComponent } from '../dialogs/imported-data/imported-data.component.ts';
+import{ImportedDataComponent} from '../dialogs/imported-data/imported-data.component';
 
 @Component({
   selector: 'expected-data-output',
@@ -23,18 +23,18 @@ export class ExpectedDataOutputComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
 
-  constructor(
+  constructor(    
     private userService: ServiceService,
     public dialog: MatDialog
   ) {}
 
   ngOnInit() {
-    // this.userService.getTeamDetails()
-    //   .subscribe((users: TeamDetails[]) => {
-    //     this.users = users;
-    //     this.refreshTable();
-    //     this.dataSource.sort = this.sort;
-    //   });
+    this.userService.getTeamDetails()
+      .subscribe((users: TeamDetails[]) => {
+        this.users = users;
+        this.refreshTable();
+        this.dataSource.sort = this.sort;
+      });
   }
   // Refreshing table is just redifining matDataSource
   public refreshTable(){
@@ -52,9 +52,9 @@ importData(teamdetails:TeamDetails) {
       });
       dialogRef.afterClosed().subscribe(result => {
       if (result !== 0) {
-        //this.users=result;
-        this.refreshTable();
-        //console.log(result);
+        this.users=result;
+       this.refreshTable();
+        console.log(result);
       }
       if(result===0){
         console.log("terminated");

@@ -15,7 +15,7 @@ export class EditDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: IProduct,
     public dataService: ServiceService) { }
   ngOnInit() {
-    console.log(this.data.team_name);
+    console.log(this.data.name);
   }
   formControl = new FormControl('', [
     Validators.required

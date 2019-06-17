@@ -37,6 +37,7 @@ export class ImportedDataComponent implements OnInit {
   getTeamDetails(): Observable<TeamDetails[]> {
     return this.http.get<TeamDetails[]>(this.API_URL_TEAMNAMES);
     } 
+
   getTeamDetail() {
     this.getTeamDetails()
     .subscribe((users: TeamDetails[]) => {
@@ -44,11 +45,10 @@ export class ImportedDataComponent implements OnInit {
     this.team_names.sort((a , b) =>
     ('' + a.name).localeCompare(b.name));
     this.team_names.sort();
-
     });
-  //this.getProjectDetail();
   } 
 
+  //getting url data from team detail
   gettingTeamUrl(){
     console.log('test'+this.selected);
     this.api_url=this.selected;
@@ -59,28 +59,22 @@ export class ImportedDataComponent implements OnInit {
     //getting project details
   getProjectDetails(){
     console.log('2nd tym'+this.selected);
-    //console.log(this.apiurl);
     return this.http.get<TeamDetails[]>('http://localhost:3000/'+this.api_url);
   }
-
-
   getProjectDetail(){
     this.getProjectDetails()
     .subscribe((users: TeamDetails[]) => {
     this.project_names= users;
-    // this.users.sort((a , b) =>
-    // ('' + a.team_name).localeCompare(b.team_name));
+    this.project_names.sort((a , b) =>
+    ('' + a.name).localeCompare(b.name));
     });
-
   }
-    importNewTeam(){
-      this.dialogRef.close(this.data);
-      console.log(this.selected);
-      console.log(this.selected1);
-    }
-    cancel(){
-      this.dialogRef.close(0);
-    }
+  importNewTeam(){
+    this.dialogRef.close(this.selected1);
+  }
+  cancel(){
+    this.dialogRef.close(0);
+  }
 
 }
 
